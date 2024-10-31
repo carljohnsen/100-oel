@@ -1,12 +1,17 @@
 import helpers
 import json
 import os
+import playsound
+import random
 import time
 
 sp = helpers.get_spotify_client()
 did = helpers.device_id
 
-fade_min = 50
+# Get the interlude files
+interlude_files = os.listdir('interlude')
+
+fade_min = 30
 fade_max = 100
 fade_seconds = 5
 fade_steps = 20
@@ -33,6 +38,11 @@ for track in tracklist:
         sp.volume(int(fade_max - (i*fade_stepsize)), device_id=did)
         time.sleep(fade_sleep)
     sp.volume(fade_min, device_id=did)
+    if len(interlude_files) > 0:
+        # Choose a random interlude
+        interlude = interlude_files[random.randint(0, len(interlude_files) - 1)]
+        playsound.playsound(f'interlude/{interlude}')
+
 
 # Reset the
 sp.pause_playback(device_id=did)
