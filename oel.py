@@ -18,7 +18,7 @@ sp = helpers.get_spotify_client()
 did = helpers.device_id
 
 # Get the interlude files
-interlude_files = os.listdir('interlude')
+interlude_files = [fname for fname in os.listdir('interlude') if fname.endswith('.m4a')]
 
 fade_min = 30
 fade_max = 100
