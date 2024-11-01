@@ -42,11 +42,12 @@ while True:
             tracklist = json.load(f)
 
     tracklist["tracks"].append({
-        "id": ids[index],
-        "name": names[index],
-        "artist": artists[index],
-        "position": 0,
-        "duration": duration[index]
+        "index": len(tracklist["tracks"]), # For convenience when editing the json
+        "id": ids[index], # The Spotify track id
+        "name": names[index], # The name of the track
+        "artist": artists[index], # The name of the artist
+        "position": 0, # The position in the track in seconds for when the track should start
+        "duration": duration[index] # The duration of the track in milliseconds
     })
 
     with open('tracklist.json', 'w') as f:
