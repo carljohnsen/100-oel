@@ -34,7 +34,10 @@ while True:
     sp.start_playback(device_id=did, uris=[f"spotify:track:{ids[index]}"])
 
     should_save = input('Do you want to save this track to the tracklist? (y/n): ')
-    if should_save.lower() != 'y':
+    if should_save.isdigit():
+        start_pos = int(should_save)
+    elif should_save.lower() != 'y':
+        start_pos = 0
         continue
 
     if os.path.exists('tracklist.json'):
@@ -46,7 +49,7 @@ while True:
         "id": ids[index], # The Spotify track id
         "name": names[index], # The name of the track
         "artist": artists[index], # The name of the artist
-        "position": 0, # The position in the track in seconds for when the track should start
+        "position": start_pos, # The position in the track in seconds for when the track should start
         "duration": duration[index] # The duration of the track in milliseconds
     })
 
