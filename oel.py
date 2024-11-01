@@ -22,8 +22,8 @@ interlude_files = [fname for fname in os.listdir('interlude') if fname.endswith(
 
 fade_min = 30
 fade_max = 100
-fade_seconds = 5
-fade_steps = 20
+fade_seconds = 1
+fade_steps = 5
 fade_sleep = fade_seconds / fade_steps
 fade_stepsize = (fade_max - fade_min) / fade_steps
 track_time = 60 - 2*fade_seconds
