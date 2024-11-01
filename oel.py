@@ -7,8 +7,8 @@ import random
 import time
 
 parser = argparse.ArgumentParser(description='Play the tracks in the tracklist, changing every minute with an interlude.')
-parser.add_argument('track_idx_start', type=int, help='The index of the first track to play', default=0)
-parser.add_argument('track_idx_end', type=int, help='The index of the last track to play', default=100)
+parser.add_argument('track_idx_start', type=int, help='The index of the first track to play', nargs='?',action='store', default=0)
+parser.add_argument('track_idx_end', type=int, help='The index of the last track to play', nargs='?', action='store', default=100)
 args = parser.parse_args()
 
 track_idx_start = args.track_idx_start
