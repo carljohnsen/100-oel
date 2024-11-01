@@ -1,9 +1,18 @@
+import argparse
 import helpers
 import json
 import os
 import playsound
 import random
 import time
+
+parser = argparse.ArgumentParser(description='Play the tracks in the tracklist, changing every minute with an interlude.')
+parser.add_argument('track_idx_start', type=int, help='The index of the first track to play', default=0)
+parser.add_argument('track_idx_end', type=int, help='The index of the last track to play', default=100)
+args = parser.parse_args()
+
+track_idx_start = args.track_idx_start
+track_idx_end = args.track_idx_end
 
 sp = helpers.get_spotify_client()
 did = helpers.device_id
@@ -27,7 +36,9 @@ with open('tracklist.json', 'r') as f:
     tracklist = json.load(f)["tracks"]
 
 sp.volume(0, device_id=did)
-for track in tracklist:
+for i in range(track_idx_start, track_idx_end):
+    track = tracklist[i]
+    print (f'{i:03d}: {track["id"]} "{track["name"]}" - "{track["artist"]}")')
     sp.start_playback(device_id=did, uris=[f"spotify:track:{track['id']}"], position_ms=int(track['position'])*1000)
     for i in range(fade_steps): # Fade in
         sp.volume(int(fade_min + i*fade_stepsize), device_id=did)
