@@ -33,7 +33,7 @@ while True:
 
     sp.start_playback(device_id=did, uris=[f"spotify:track:{ids[index]}"])
 
-    should_save = input('Do you want to save this track to the tracklist? (y/n): ')
+    should_save = input('Do you want to save this track to the tracklist? (y/n/[starting point in s]): ')
     if should_save.isdigit():
         start_pos = int(should_save)
     elif should_save.lower() != 'y':
