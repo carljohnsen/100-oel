@@ -59,3 +59,10 @@ To run the main script, run the following command:
 python3 oel.py [index]
 ```
 Which starts going through the tracklist sequentially, starting at `index` (0-indexed). If no index is provided, it will start at the beginning of the tracklist. The index is included in case the script crashes and you want to resume from where you left off.
+
+## Saving the tracklist as a spotify playlist
+To save the tracklist as a Spotify playlist, run the following command:
+```
+python3 save_playlist.py
+```
+This will save the tracklist as a public Spotify playlist under your usere named `100 Øl`.
