@@ -6,6 +6,6 @@ device_id = os.environ['SPOTIPY_DEVICE_ID']
 
 def get_spotify_client():
     # Set up the client credentials
-    scope = "app-remote-control,streaming,user-read-playback-state,user-modify-playback-state,user-read-currently-playing"
+    scope = "app-remote-control,streaming,user-read-playback-state,user-modify-playback-state,user-read-currently-playing, playlist-modify-public"
     return spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
