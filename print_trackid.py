@@ -43,6 +43,10 @@ while True:
     if os.path.exists('tracklist.json'):
         with open('tracklist.json', 'r') as f:
             tracklist = json.load(f)
+    else:
+        tracklist = {
+            "tracks": []
+        }
 
     tracklist["tracks"].append({
         "index": len(tracklist["tracks"]), # For convenience when editing the json
