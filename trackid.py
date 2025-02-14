@@ -30,6 +30,10 @@ names = [items[i]['name'] for i in range(n)]
 artists = [' & '.join([items[i]['artists'][j]['name'] for j in range(len(items[i]['artists']))]) for i in range(n)]
 duration = [items[i]['duration_ms'] for i in range(n)]
 
+if n == 0:
+    print ('No results found')
+    exit()
+
 print ("Top 10 search results:")
 for i in range(n):
     print (f'{i}: {ids[i]} "{names[i]}" - "{artists[i]}" ({duration[i] // 1000 // 60}:{duration[i] // 1000 % 60})')
