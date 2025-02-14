@@ -28,6 +28,9 @@ def parse_environment():
 
     # Device ID is a special case, as it's not initially set.
     if 'SPOTIPY_DEVICE_ID' in os.environ:
-        device_id = os.environ['SPOTIPY_DEVICE_ID']
+        return os.environ['SPOTIPY_DEVICE_ID']
+    elif 'SPOTIPY_DEVICE_ID' in env_dict:
+        return env_dict['SPOTIPY_DEVICE_ID']
+    return None
 
-parse_environment()
+device_id = parse_environment()
