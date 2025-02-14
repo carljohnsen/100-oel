@@ -22,6 +22,7 @@ export SPOTIPY_CLIENT_ID='your-spotify-client-id'
 export SPOTIPY_CLIENT_SECRET='your-spotify-client-secret'
 export SPOTIPY_REDIRECT_URI='your-app-redirect-url'
 ```
+The script will also check the contents of `secrets.env` for these environment variables.
 
 ## Determine which device should play the music
 To determine which device should play the music, run the following command:
@@ -32,6 +33,7 @@ This will print a list of devices that are available to play music. Copy the dev
 ```
 export SPOTIPY_DEVICE_ID='your-device-id'
 ```
+This can also be set in `secrets.env`, just like the API keys.
 
 # Usage
 ## Building the tracklist
