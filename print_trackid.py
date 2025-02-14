@@ -6,7 +6,17 @@ import os
 parser = argparse.ArgumentParser(description='Print the current track id')
 parser.add_argument('trackname', type=str, help='The name of the track to print the id of')
 parser.add_argument('artistname', type=str, help='The name of the artist of the track to print the id of')
+parser.add_argument('start_pos', type=str, help='The position in the track, either in "mm:ss" format or in seconds', nargs='?')
 args = parser.parse_args()
+
+if args.start_pos is not None:
+    if ':' in args.start_pos:
+        parts = args.start_pos.split(':')
+        start_pos = int(parts[0]) * 60 + int(parts[1])
+    else:
+        start_pos = int(args.start_pos)
+else:
+    start_pos = 0
 
 sp = helpers.get_spotify_client()
 did = helpers.device_id
@@ -35,13 +45,15 @@ while True:
         print ('Only one result - playing that track')
         index = 0
 
-    sp.start_playback(device_id=did, uris=[f"spotify:track:{ids[index]}"])
+    sp.start_playback(device_id=did, uris=[f"spotify:track:{ids[index]}"], position_ms=start_pos*1000)
 
-    should_save = input('Do you want to save this track to the tracklist? (y/n/[starting point in s]): ')
-    if should_save.isdigit():
+    should_save = input('Do you want to save this track to the tracklist? (y/n/[starting point in mm:ss or s]): ')
+    if ':' in should_save:
+        parts = should_save.split(':')
+        start_pos = int(parts[0]) * 60 + int(parts[1])
+    elif should_save.isdigit():
         start_pos = int(should_save)
-    elif should_save.lower() != 'y':
-        start_pos = 0
+    elif should_save.lower() != 'y' and should_save.lower() != 'yes' and len(should_save) > 0:
         continue
 
     if os.path.exists('tracklist.json'):
