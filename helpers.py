@@ -2,7 +2,8 @@ import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-device_id = os.environ['SPOTIPY_DEVICE_ID']
+if 'SPOTIPY_DEVICE_ID' in os.environ:
+    device_id = os.environ['SPOTIPY_DEVICE_ID']
 
 def get_spotify_client():
     # Set up the client credentials
