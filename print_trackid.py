@@ -25,11 +25,15 @@ for i in range(n):
     print (f'{i}: {ids[i]} "{names[i]}" - "{artists[i]}" ({duration[i] // 1000 // 60}:{duration[i] // 1000 % 60})')
 
 while True:
-    index = input('Enter the index of the track to play: ')
-    if not index.isdigit() or int(index) < 0 or int(index) >= n:
-        print('Invalid index - ignoring')
-        exit()
-    index = int(index)
+    if n > 1:
+        index = input('Enter the index of the track to play: ')
+        if not index.isdigit() or int(index) < 0 or int(index) >= n:
+            print('Invalid index - ignoring')
+            exit()
+        index = int(index)
+    else:
+        print ('Only one result - playing that track')
+        index = 0
 
     sp.start_playback(device_id=did, uris=[f"spotify:track:{ids[index]}"])
 
