@@ -39,9 +39,9 @@ This can also be set in `secrets.env`, just like the API keys.
 ## Building the tracklist
 To build the tracklist, run the following command:
 ```
-python3 [trackname] [artist]
+python3 trackid.py [trackname] [artistname] [start_pos]
 ```
-This will present you with a list of songs that match the search query. Select the song you want to add to the tracklist by entering the number of the song. This will also play the song on the device you specified. It will then ask you whether you'd like that added to the tracklist. You can put either `y`, `n` or the starting point in the song in seconds. If you put the starting point in seconds, the song will start at that point in the tracklist during the 100 minutes main run.
+This will present you with a list of songs that match the search query. If there's only one result it will play that song, otherwise select the song you want to add to the tracklist by entering the number of the song. This will also play the song on the device you specified. It will then ask you whether you'd like that added to the tracklist. You can put either `y`, `n` or the starting point in the song in seconds or in the `mm:ss` format. If you put the starting point, the song will start at that point in the tracklist during the 100 minutes main run. This can also be supplied as a commandline parameter, in which case `y` will store that given time.
 
 The tracklist is saved in `tracklist.json` and is a list of dictionaries with the following keys:
 - `index`: The index of the song in the tracklist. This is ignored, and is only used for human readability.
@@ -65,6 +65,6 @@ Which starts going through the tracklist sequentially, starting at `index` (0-in
 ## Saving the tracklist as a spotify playlist
 To save the tracklist as a Spotify playlist, run the following command:
 ```
-python3 save_playlist.py
+python3 save_playlist.py tracklist [playlist_name]
 ```
-This will save the tracklist as a public Spotify playlist under your usere named `100 Øl`.
+This will save the tracklist as a public Spotify playlist under your user and it will be named `100 Øl` unless specified otherwise in the commandline arguments.
