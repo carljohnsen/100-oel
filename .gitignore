@@ -3,3 +3,4 @@ __pycache__
 tracklist.json
 interlude/
 secrets.env
+plan.md
